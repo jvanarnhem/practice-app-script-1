@@ -3,17 +3,81 @@
   <head>
     <base target="_top">
     <style>
-      h1 {color: blue;}
+       html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #738255;
+      }
+      
+      .container {
+        display: flex;
+      }
+      
+      .column {
+        background-color:white;
+        box-sizing: border-box;
+        border-radius: 8px;
+        margin: 16px 16px;
+        padding: 16px;
+        flex: 1;
+      }
+      
+      .block textarea {
+        width: 100%;
+      }
+      
+      ul {
+        text-align: center;
+        list-style: none;
+      }
+      
+      button {
+        padding: 8px 16px;
+        background: #283808;
+        color: white;
+        transition: all 0.3s;
+      }
+      
+      #sub:hover {
+        background: white;
+        color: #283808;
+      }
     </style>
   </head>
   <body>
-    <h1>Web App</h1>
+    <div class="container">
+      <div class="first column">
+        <h1>Student List</h1>
+        <ul></ul>
+      </div>
+      <div class ="second column">
+        <h1>Add Student</h1>
+        <form onsubmit="addStudents(event)">
+          <div class="block">
+            <textarea name="students" id="students" cols="30" rows="10"></textarea>
+          </div>
+          <div class="block">
+            <button id="sub" type="submit">Add Students</button>
+          </div>
+        </form>
+      </div>
+    </div>
     
     <script>
       function main() {
         console.log('Your web app has loaded');
       }
       window.onload = main;
+      
+      function addStudents(e) {
+        e.preventDefault();
+        var students = e.target.students.value.split('\n');
+        google.script.run
+        .withSuccessHandler(function (response) {
+          console.log(response);
+        })
+        .addStudents(students);
+      }
     </script>
  
   </body>
